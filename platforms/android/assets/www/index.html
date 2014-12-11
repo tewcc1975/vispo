@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.4.min.css" />
+        <link rel="stylesheet" href="css/idangerous.swiper.css">
+        <link rel="stylesheet" href="css/idangerous.swiper.scrollbar.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.zoomooz.min.js"></script>
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/froala_editor.min.css" rel="stylesheet" type="text/css">
+		<link href="css/froala_content.min.css" rel="stylesheet" type="text/css">
+  		<link href="css/froala_style.min.css" rel="stylesheet" type="text/css">		
+        <title>Vispo Story Telling</title>
+        <!-- <script type="text/javascript" src="js/debuggap.js"></script> -->
+    </head>
+    <body>    	
+        <div id="discoverpage" data-role="page">        	
+			<header data-role="header" data-theme="b" data-position="fixed" data-fullscreen="true" style="overflow:hidden;">
+			    <h1>Vispo</h1>
+			    <a href="#search-story" class="ui-btn ui-btn-left ui-corner-all ui-icon-bullets ui-btn-icon-left">Search</a>			    
+			    <a href="storyedit.html?mode=insert&coverid=0" class="ui-btn ui-btn-right ui-corner-all ui-icon-plus ui-btn-icon-left add-story">Add Story</a>
+			</header>
+			<div class="ui-content" role="main">
+				<div class="swiper-container swiper-parent">
+				    <div class="swiper-wrapper">
+				      <!-- <div class="swiper-slide red-slide">
+				        <div class="inner">
+				        	<h2>Free Mode</h2>
+				        	<p>has no fixed positions</p>
+				        	<img src="http://4.bp.blogspot.com/-JOqxgp-ZWe0/U3BtyEQlEiI/AAAAAAAAOfg/Doq6Q2MwIKA/s1600/google-logo-874x288.png" />
+				        </div>
+				        <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-visible-on-page-show="true">
+				        	<div class="ui-body">
+				        		<h2>Free Mode</h2>
+				        		<p>Subtitle</p>
+				        		<a href="#slidePopupMenu" data-rel="popup" class="ui-btn ui-btn-right ui-corner-all ui-icon-gear ui-btn-icon-notext" data-position-to=".swiper-slide.red-slide">actions</a>								
+				        	</div>				        					        	
+				        </div>
+				      </div>
+				      <div class="swiper-slide blue-slide">
+				        <div class="inner">
+				        	<h2>Fluid-Mode Enabled</h2>
+			        		<p>When you release the slide, it keep moving for a while</p>
+				        </div>
+				        <div data-role="footer" data-position="fixed" data-tap-toggle="false"><h4>Fluid-Mode Enabled</h4></div>				        
+				      </div>
+				      <div class="swiper-slide orange-slide">
+				        <div class="inner">
+				        	<h2>Slide 3</h2>
+			        		<p>Keep swiping</p>
+				        </div>
+				        <div data-role="footer" data-position="fixed" data-tap-toggle="false"><h4>Slide 3</h4></div>
+				      </div>
+				      <div class="swiper-slide swiper-child" id="discoverySwiperNested_1">
+				      	<div class="swiper-container">
+				          <div class="swiper-wrapper">
+				            <div class="swiper-slide red-slide-nested">
+						        <div class="inner">							        	
+						        	<p>Vertical Slide 1</p>
+						        </div>
+						        <div data-role="footer" data-position="fixed" data-tap-toggle="false"><h4>Free Mode</h4></div>
+				            </div>
+				            <div class="swiper-slide blue-slide-nested">Vertical Slide 2</div>
+				            <div class="swiper-slide green-slide-nested">Vertical Slide 3</div>
+				            <div class="swiper-slide pink-slide-nested">Vertical Slide 4</div>
+				            <div class="swiper-slide red-slide-nested">Vertical Slide 5</div>
+				            <div class="swiper-slide orange-slide-nested">Vertical Slide 6</div>
+				          </div>
+				        </div>
+				      </div>
+				      <div class="swiper-slide pink-slide">
+				        <div class="inner">
+				        	<h2>Slide 5</h2>
+			        		<p>The last one</p>
+				        </div>
+				        <div data-role="footer" data-position="fixed" data-tap-toggle="false"><h4>Slide 5</h4></div>
+				      </div>
+				      <div class="swiper-slide lorem-slide">
+			      		<div class="inner">
+				      		<h2 style="font-style: italic; font-size: 42px">Slide 6</h2>
+				      		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at orci odio. Curabitur pharetra risus et euismod vulputate. Mauris fermentum lacus quis vehicula tempor. Curabitur quis magna eros. Sed ornare eleifend est at imperdiet. Aliquam convallis, nibh ac hendrerit tincidunt, ex nulla sagittis dui, nec convallis nunc ligula quis velit. In hac habitasse platea dictumst. Ut consequat elit ipsum. Phasellus congue, magna non pharetra condimentum, sem enim rutrum elit, tincidunt finibus ligula arcu id neque.</p>
+				      		
+				      		<p>Morbi in vestibulum dolor, non lobortis nunc. Ut in risus dignissim, eleifend tortor id, elementum neque. Vestibulum faucibus gravida sodales. Sed non urna purus. Ut malesuada in libero quis accumsan. Nunc pellentesque laoreet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec libero eu elit mollis viverra at ut nibh. Vestibulum sed nunc quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+				      		
+				      		<p>Vivamus at purus quis turpis luctus ultricies. Nulla elit arcu, vestibulum at ante vel, ornare luctus urna. Etiam vel laoreet ante. Nulla quis finibus justo. Proin magna lectus, sodales ac tincidunt ut, tempus eu erat. Nullam vel vestibulum sapien. Sed ornare sagittis erat, eu ullamcorper sem commodo sed. Suspendisse vitae tellus et lorem lacinia ornare sed vitae enim. Fusce eget nibh quis magna gravida tincidunt.</p>
+				      		
+				      		<p>Vivamus ac diam sit amet augue egestas iaculis eu nec libero. Curabitur quis ex sed enim dapibus dapibus. Curabitur tincidunt metus sed sem accumsan dignissim. Phasellus ex ante, consectetur in mi vitae, tempus suscipit ante. Nulla fermentum consequat sapien at maximus. Cras vitae tortor dapibus, mattis metus a, lacinia enim. In hac habitasse platea dictumst. Donec lobortis diam sed blandit pulvinar. Sed dictum elit vel est mollis sodales. Donec vel vestibulum ligula. Proin et laoreet urna. Proin efficitur convallis elit eu commodo. Aliquam non commodo nulla. Etiam vel lacus vitae erat aliquet dapibus at vel mauris. Morbi lacus lacus, convallis ut enim eu, sagittis molestie dui.</p>
+			      		</div>
+				      	<div data-role="footer" data-position="fixed" data-tap-toggle="false"><h4>Slide 6</h4></div>
+				      </div> -->
+				    </div>
+				</div>
+			</div>
+			<div data-theme="b" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" id="search-story">
+		        <form class="searchstoryform" action="">
+		            <fieldset>
+		            	<a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-delete all-stories">All Stories</a>
+		            </fieldset>
+		            <fieldset>
+		            	<legend><h2>Search</h2></legend>
+		            	<input type="search" name="search" id="search" value="" placeholder="Search story...">
+		            </fieldset>		            
+		            <fieldset>
+		            	<legend><h2>Categories</h2></legend>
+		            	<ul data-role="listview" class="story-categories">		            	
+					    	<li><a href="#">Holiday Potluck</a></li>
+						    <li><a href="#">Small Stories</a></li>
+						    <li><a href="#">The Big Picture</a></li>
+						    <li><a href="#">Places to go</a></li>
+						    <li><a href="#">Interesting People</a></li>
+						    <li><a href="#">Things to Eat &amp; Drink</a></li>
+						    <li><a href="#">Stay informed</a></li>
+						</ul>
+		            </fieldset>
+					<fieldset class="story-tags">
+						<legend><h2>Tags</h2></legend>
+						<div class="ui-grid-a">
+						    <div class="ui-block-a"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#thanksgiving</a></div>
+						    <div class="ui-block-b"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#christmas</a></div>
+						</div>
+						<div class="ui-grid-a">
+						    <div class="ui-block-a"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#artm</a></div>
+						    <div class="ui-block-b"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#turkey</a></div>
+						</div>
+						<div class="ui-grid-a">
+						    <div class="ui-block-a"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#love</a></div>
+						    <div class="ui-block-b"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#travel</a></div>
+						</div>
+						<div class="ui-grid-a">
+						    <div class="ui-block-a"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#photography</a></div>
+						    <div class="ui-block-b"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#nature</a></div>
+						</div>
+						<div class="ui-grid-a">
+						    <div class="ui-block-a"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#art</a></div>
+						    <div class="ui-block-b"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-mini">#food</a></div>
+						</div>
+					</fieldset>
+		        </form>
+		    </div><!-- /panel -->	
+		</div>
+		<div data-role="popup" id="slidePopupMenu">
+			<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+			    <a href="story.html" class="actView ui-btn ui-btn-icon-notext ui-icon-eye ui-corner-all ui-btn-icon-notext">Viewy</a>
+			    <a href="storyedit.html?mode=update" class="actEdit ui-btn ui-btn-icon-notext ui-icon-edit ui-corner-all ui-btn-icon-notext">Edit</a>
+			</div>
+		</div>	
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/idangerous.swiper.js"></script>
+        <script src="js/idangerous.swiper.scrollbar-2.1.js"></script>
+        <script src="js/froala_editor.min.js"></script>
+        <!--[if lt IE 9]>
+			<script src="js/froala_editor_ie8.min.js"></script>
+		<![endif]-->
+		<script src="js/plugins/tables.min.js"></script>
+		<script src="js/plugins/lists.min.js"></script>
+		<script src="js/plugins/colors.min.js"></script>
+		<script src="js/plugins/media_manager.min.js"></script>
+		<script src="js/plugins/font_family.min.js"></script>
+		<script src="js/plugins/font_size.min.js"></script>
+		<script src="js/plugins/block_styles.min.js"></script>
+		<script src="js/plugins/video.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>

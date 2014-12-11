@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.4.min.css" />
+        <link rel="stylesheet" href="css/idangerous.swiper.css">
+        <link rel="stylesheet" href="css/idangerous.swiper.scrollbar.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.zoomooz.min.js"></script>
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/froala_editor.min.css" rel="stylesheet" type="text/css">
+  		<link href="css/froala_style.min.css" rel="stylesheet" type="text/css">
+        <title>Vispo Story Telling</title>
+    </head>
+    <body>
+        <div id="storyeditpage" data-role="page">
+        	<header data-theme="b" data-role="header">
+			    <h1>Add/Edit Story</h1>
+			    <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				    <a href="story.html" id="savePage" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-left">Save</a>
+				    <a href="story.html" id="cancelPage" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-left">Cancel</a>
+				    <a href="#actions-form" class="ui-btn ui-corner-all ui-icon-action ui-btn-icon-left">Actions</a>
+				</div>				
+			</header>		
+			<div class="ui-content" role="main">
+				<div class="editor-wrapper">
+					<div class="editor">
+						<img class="story-image" src="" alt="Story Image" />
+					</div>
+					<div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
+						<input type="text" name="story-title" id="story-title" placeholder="Title here..." value="">
+						<input type="text" name="story-subtitle" id="story-subtitle" placeholder="Subtitle here..." value="">
+					</div>
+				</div>				
+			</div>
+			<!-- <footer data-role="footer">
+				<div data-role="navbar">
+			        <ul>
+			            <li><a href="index.html" data-icon="search">Discover</a></li>
+			            <li><a href="home.html" data-icon="home">Home</a></li>
+			            <li><a href="storyedit.html?mode=insert&coverid=0" data-icon="plus" class="ui-btn-active ui-state-persist">Add Story</a></li>
+			            <li><a href="#" data-icon="user">Profile</a></li>
+			        </ul>
+			    </div>
+			</footer> -->
+			<div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="b" id="actions-form">
+		        <form class="actionsform">
+		            <h2>Actions</h2>
+		            <div data-role="controlgroup" data-type="vertical">
+					    <a href="#" id="addNewPage" class="ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-right">Add New Page</a>
+					    <a href="#" id="addBelowPage" class="ui-btn ui-corner-all ui-icon-arrow-d ui-btn-icon-right">Add Below Page</a>
+					</div>
+		        </form>
+		    </div><!-- /panel -->
+		</div>
+    </body>
+</html>
