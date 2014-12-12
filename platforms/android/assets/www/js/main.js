@@ -408,25 +408,34 @@ var app = {
 			$('.story-image').attr('src', '../pics/coffee/Ascension-Coffee-Brewing.jpg');	
 		}		
 		if (navigator.camera) {
-			getPicSuccess || (getPicSuccess = function(imageURI) {
+			/*getPicSuccess || (getPicSuccess = function(imageURI) {
+				console.log('Get picture successfully');
 				$('.story-image').attr('src', imageURI);
 			});
 			getPicError || (getPicError = function(message) {
 				console.log('Get picture canceled or failed');
 				$(':mobile-pagecontainer').pagecontainer('change', 'index.html');
-			});
+			});*/
 			options || (options = {
 					quality: 50, 
 					destinationType: Camera.DestinationType.FILE_URI,
 					sourceType: Camera.PictureSourceType.PHOTOLIBRARY
 			});
 			navigator.camera.getPicture(
-				getPicSuccess,
-				getPicError,
+				function(imageURI) {
+					console.log('Get picture successfully');
+					if (getPicSuccess)
+						getPicSuccess(imageURI);
+				},
+				function(message) {
+					console.log('Get picture canceled or failed');
+					if (getPicError) 
+						getPicError(message);
+				},
 				options
 	        );
 		}		
-    },     
+    },    
     getDbStories: function(tx) {    				
 		tx.executeSql(
 			'SELECT sc.*, sp.id AS pageId, sp.content FROM story_cover sc JOIN story_page sp ON sc.id = sp.cover_id WHERE sp.pageorder = 1 AND sp.parent = 0', 
@@ -754,15 +763,54 @@ var app = {
 	    				objTmp[key] = storyObj[key];
 	    			}
 	    			return objTmp;
-	    		};	    		
+	    		};
 	    	app.storyBak = backupStory(currStory);
-	    	$("#storyeditpage>[data-role=header]").toolbar( "option", "fullscreen", true );
+	    	$("#storyeditpage>[data-role=header]").toolbar( "option", "fullscreen", true );	
+	    	$('#storyeditpage #insertPhoto').on('tap', function() {
+				$('#imagePopupMenu').popup("open", {
+    				transition: 'pop',
+    				positionTo: '#storyeditpage #insertPhoto'
+    			});
+    			$('#imagePopupMenu').on('tap', function() {
+    				$(this).popup('close');	
+    			});
+			});    	
 	    	data.toPage.data(params);	    	
 	    	if (data.toPage.data('mode') == 'insert') {
 	    		$('a[href="#actions-form"]').hide();
 	    		if (data.toPage.data('coverid') == 0) {
 	    			$('#storyeditpage [data-role=header]>h1').text('Add Story: Cover Page');
-	    			$('.editor img.story-image').on('taphold', function() {app.getPicture();});
+	    			// $('.editor img.story-image').on('taphold', function() {app.getPicture();});	    			
+	    			$('#storyeditpage .actTakePicture').on('tap', function() {
+	    				app.getPicture(
+		    				function(imageURI) {		    					
+								$('.story-image').attr('src', imageURI);
+		    				}, 
+		    				function(message) {
+								$(':mobile-pagecontainer').pagecontainer('change', 'index.html');
+							},
+		    				{
+					    		quality: 50, 
+								destinationType: 1,//Camera.DestinationType.FILE_URI,
+								sourceType: 1//Camera.PictureSourceType.CAMERA
+				    		}
+			    		);
+			    	});
+			    	$('#storyeditpage .actSelectPhoto').on('tap', function() {
+			    		app.getPicture(
+				    		function(imageURI) {
+								$('.story-image').attr('src', imageURI);
+		    				}, 
+		    				function(message) {
+								$(':mobile-pagecontainer').pagecontainer('change', 'index.html');
+							}, 
+				    		{
+					    		quality: 50, 
+								destinationType: 1,//Camera.DestinationType.FILE_URI,
+								sourceType: 0//Camera.PictureSourceType.PHOTOLIBRARY
+				    		}
+				    	);
+			    	});
 	    			app.currStory.reset({
 		    			level: 1,
 				    	pageorder: 1,
@@ -773,18 +821,49 @@ var app = {
 		    			$('#savePage').attr('href', 'story.html?coverid=' + (app.currStory.status.maxCoverId + 1));	
 		    			$('#cancelPage').attr('href', 'index.html');
 		    		});
-		    		app.getPicture();		    			    		
+		    		// app.getPicture();
+		    		$('#storyeditpage #insertPhoto').trigger('tap');	    			    		
 	    		}
 	    		else if (!data.toPage.data('parent') && data.toPage.data('coverid') != 0) {
 	    			var coverId = data.toPage.data('coverid');
 		    		$('#storyeditpage [data-role=header]>h1').text('Add Story: Page');
-		    		$('.editor img.story-image').on('taphold', function() {app.getPicture();});
+	    			$('#storyeditpage .actTakePicture').on('tap', function() { 
+	    				app.getPicture(
+		    				function(imageURI) {
+								$('.story-image').attr('src', imageURI);
+		    				}, 
+		    				function(message) {
+								$(':mobile-pagecontainer').pagecontainer('change', 'story.html?' + coverId);
+							}, 
+							{
+					    		quality: 50, 
+								destinationType: 1,//Camera.DestinationType.FILE_URI,
+								sourceType: 1//Camera.PictureSourceType.CAMERA
+							}
+			    		);
+			    	});
+			    	$('#storyeditpage .actSelectPhoto').on('tap', function() {
+			    		app.getPicture(
+				    		function(imageURI) {
+								$('.story-image').attr('src', imageURI);
+		    				}, 
+				    		function(message) {
+								$(':mobile-pagecontainer').pagecontainer('change', 'story.html');
+							}, 
+				    		{
+					    		quality: 50, 
+								destinationType: 1,//Camera.DestinationType.FILE_URI,
+								sourceType: 0//Camera.PictureSourceType.PHOTOLIBRARY
+				    		}
+				    	);
+			    	});
 		    		app.currStory.reset({
 		    			coverId: coverId,
 		    			level : 1,
 		    			parent : 0	
 		    		});
-		    		app.getPicture();
+		    		// app.getPicture();
+		    		$('#storyeditpage #insertPhoto').trigger('tap');
 		    		$('.editor+div[data-role=footer]').remove();
 		    		$('#savePage').attr('href', 'story.html?coverid=' + coverId);
 		    		$('#cancelPage').attr('href', 'story.html?coverid=' + coverId);
@@ -793,6 +872,7 @@ var app = {
 	    			var coverId = data.toPage.data('coverid'),
 	    				currParent = data.toPage.data('parent');
 	    			$('#storyeditpage [data-role=header]>h1').text('Add Story: Below Fold');
+	    			$('#storyeditpage #insertPhoto').hide();
 		    		app.currStory.reset({
 		    			coverId: coverId,
 		    			level: 2,
@@ -836,7 +916,33 @@ var app = {
 	    					}	    					
 	    					$('#addBelowPage').attr('href', 'storyedit.html?mode=insert&coverid=' + coverId + '&parent=' + pageId);
 	    					$('.editor').html(content);
-	    					$('.editor img.story-image').on('taphold', function() {app.getPicture();});
+	    					// $('.editor img.story-image').on('taphold', function() {app.getPicture();});
+    						$('#storyeditpage .actTakePicture').on('tap', function() {
+    							app.getPicture(
+				    				function(imageURI) {
+										$('.story-image').attr('src', imageURI);
+				    				}, 
+				    				false, 
+									{
+							    		quality: 50, 
+										destinationType: 1,//Camera.DestinationType.FILE_URI,
+										sourceType: 1//Camera.PictureSourceType.CAMERA
+									}
+						    	);
+					    	});
+					    	$('#storyeditpage .actSelectPhoto').on('tap', function() {
+					    		app.getPicture(
+						    		function(imageURI) {
+										$('.story-image').attr('src', imageURI);
+				    				}, 
+						    		false,
+						    		{
+							    		quality: 50, 
+										destinationType: 1,//Camera.DestinationType.FILE_URI,
+										sourceType: 0//Camera.PictureSourceType.PHOTOLIBRARY
+						    		}
+						    	);
+					    	});
 	    					$('input[name=story-title]').val(title);
 	    					$('input[name=story-subtitle]').val(subtitle);	    					
 	    					if (pageorder > 1) {
@@ -845,6 +951,7 @@ var app = {
 	    				}
 	    				else if (level == 2) {
 	    					$('#storyeditpage [data-role=header]>h1').text('Edit Story: Below Fold');
+	    					$('#storyeditpage #insertPhoto').hide();
 	    					$('#addBelowPage').attr('href', 'storyedit.html?mode=insert&coverid=' + coverId + '&parent=' + parent);
 	    					app.currStory.updateStatusCurrStory(function() {
 					    		app.currStory.updateStatusBelowFold(function() {

@@ -23,6 +23,7 @@
         	<header data-theme="b" data-role="header">
 			    <h1>Add/Edit Story</h1>
 			    <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+			    	<a href="#" id="insertPhoto" class="ui-btn ui-corner-all ui-icon-camera ui-btn-icon-left">Photo</a>
 				    <a href="story.html" id="savePage" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-left">Save</a>
 				    <a href="story.html" id="cancelPage" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-left">Cancel</a>
 				    <a href="#actions-form" class="ui-btn ui-corner-all ui-icon-action ui-btn-icon-left">Actions</a>
@@ -58,6 +59,13 @@
 					</div>
 		        </form>
 		    </div><!-- /panel -->
+			<div data-role="popup" id="imagePopupMenu" data-theme="b">
+		        <ul data-role="listview" data-inset="true" style="min-width:210px;">
+		            <li data-role="list-divider">Choose an action</li>
+		            <li><a class="actTakePicture" href="#">Take Picture</a></li>
+		            <li><a class="actSelectPhoto" href="#">Select Photo</a></li>
+		        </ul>
+			</div>		    
 		</div>
     </body>
 </html>
